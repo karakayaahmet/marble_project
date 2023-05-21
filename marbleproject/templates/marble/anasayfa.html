@@ -60,7 +60,7 @@
             <label for="formFile" class="form-label">Resim Seç</label>
             <input class="form-control" type="file" id="formFile" name="image" accept=".jpeg, .jpg, .png">
           </div>
-          <input type="submit" value="Yükle">
+          <input type="submit" value="Yükle" class="yukle">
           
         </form> 
         <br>
@@ -216,7 +216,7 @@
       $("body").css("background-color", "#dfe9f5");
     });
 
-    document.querySelector(".aciklama").addEventListener("click", function(){
+    document.querySelector(".yukle").addEventListener("click", function(){
       document.querySelector(".aciklama").classList.add("d-none");
     })
 
