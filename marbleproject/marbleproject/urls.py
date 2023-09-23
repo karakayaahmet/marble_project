@@ -21,6 +21,6 @@ from django.conf import settings
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", include("hesap.urls")),
-    path("anasayfa", include("marble.urls"))
+    path("hesap", include("hesap.urls")),
+    path("", include("marble.urls"))
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

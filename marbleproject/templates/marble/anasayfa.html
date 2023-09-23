@@ -36,8 +36,8 @@
     </div>
 
     <div class="container bg-white">
-      <h1 class="display-4 d-flex justify-content-center">Mermer Sınıflandırma</h1>
-      <p class="lead text-capitalize d-flex justify-content-center">Bu program ile artık mermer sınıflamak çok kolay.
+      <h1 class="display-4 d-flex justify-content-center">Hasar Tespiti ve Analizi</h1>
+      <p class="lead text-capitalize d-flex justify-content-center">Bu program ile artık hasar tespiti yapmak çok kolay.
       </p>
     </div>
   </div>
@@ -97,23 +97,29 @@
 
               <hr>
 
-              <div>
+              {% comment %} <div>
                 <p>Renk kodu: {{ renk }}</p>
               </div>
 
-              <hr>
+              <hr> {% endcomment %}
 
-              <div>
-                <p>Crack : %{{ crack }}</p><br>
+              {% comment %} <div>
+                <p>Az : %{{ crack }}</p><br>
                 <p>Dot : %{{ dot }}</p><br>
                 <p>Good : %{{ good }}</p><br>
                 <p>Joint : %{{ joint }}</p>
+              </div> {% endcomment %}
+
+              <div>
+                <p>Az Hasarlı : %{{ crack }}</p><br>
+                <p>Orta Hasarlı : %{{ dot }}</p><br>
+                <p>Ağır Hasarlı : %{{ good }}</p><br>
               </div>
 
-              <hr>
+              {% comment %} <hr>
               <div>
                 <p>Kalite Türü : {{ kalite_turu }}</p>
-              </div>
+              </div> {% endcomment %}
 
       </div>
             <!-- </div>
