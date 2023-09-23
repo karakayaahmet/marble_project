@@ -30,6 +30,9 @@ class Resimler(models.Model):
     good = models.CharField(max_length=4, blank=True)
     joint = models.CharField(max_length=4, blank=True)
     kalite_turu = models.CharField(max_length=5, blank=True)
+    az_hasarli = models.CharField(max_length=4, blank=True)
+    orta_hasarli = models.CharField(max_length=4, blank=True)
+    agir_hasarli = models.CharField(max_length=4, blank=True)
 
     class Meta:
         get_latest_by = 'created_at'
@@ -159,6 +162,7 @@ class Resimler(models.Model):
             dot1 = "{:.2f}".format(sonuclar[0][1]*100)
             good1 = "{:.2f}".format(sonuclar[0][2]*100)
             joint1 = "{:.2f}".format(sonuclar[0][3]*100)
+            
             # self.crack = str(sonuclar[0][0]*100)
             # self.dot = str(sonuclar[0][1]*100)
             # self.good = str(sonuclar[0][2]*100)
