@@ -53,6 +53,6 @@ def kayit(request):
 
     return render(request, "hesap/kayit.html")
 
-def cikis(request):
-    logout(request)
-    return redirect("giris")
+# def cikis(request):
+#     logout(request)
+#     return redirect("giris")
