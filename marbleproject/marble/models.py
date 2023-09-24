@@ -112,12 +112,55 @@ class Resimler(models.Model):
         except:
             self.title = "Sınıflandırma Başarısız"
             self.average_color = "Renk Kodu Bulunamadı"
+            
+        try:
+            img = Image.open(self.image)
+            test_img = img.resize((256,256))
+            test_img = img_to_array(test_img)
+            test_img = np.expand_dims(test_img, axis = 0)
+            
+            interpreter = tf.lite.Interpreter(model_path="yepyeni_catlak.tflite")
+            interpreter.allocate_tensors()
+            input_details = interpreter.get_input_details()
+            output_details = interpreter.get_output_details()
+            
+            interpreter.set_tensor(input_details[0]['index'],test_img)
+            interpreter.invoke()
+            predictions = tf.math.softmax(interpreter.get_tensor(output_details[0]['index']))
+
+
+            print(predictions)
+            
+            max_index = np.argmax(predictions)
+
+            sonuclar = []
+
+            for i in predictions:
+                sonuclar.append(i.numpy())
+
+            print(classes[max_index])
+            
+            crack1 = "{:.2f}".format(sonuclar[0][0]*100)
+            dot1 = "{:.2f}".format(sonuclar[0][1]*100)
+            good1 = "{:.2f}".format(sonuclar[0][2]*100)
+            joint1 = "{:.2f}".format(sonuclar[0][3]*100)
+            
+            self.crack = crack1
+            self.dot = dot1
+            self.good = good1
+            self.joint = joint1
+            
+        except:
+            self.crack = "--"
+            self.dot = "--"
+            self.good = "--"
+            self.joint = "--"           
 
         try:
             # Çatlak türü analizi:
             #image load with numpy
             img = Image.open(self.image)
-            test_img = img.resize((256,256))
+            test_img = img.resize((224,224))
             test_img = img_to_array(test_img)
             test_img = np.expand_dims(test_img, axis = 0)
 
@@ -131,7 +174,8 @@ class Resimler(models.Model):
             """
 
             #Modelin yüklenmesi ve giriş çıkış tensorlerin hazırlanması
-            interpreter = tf.lite.Interpreter(model_path="yepyeni_catlak.tflite")
+            # interpreter = tf.lite.Interpreter(model_path="yepyeni_catlak.tflite")
+            interpreter = tf.lite.Interpreter(model_path="deprem_tur.tflite")
             interpreter.allocate_tensors()
             input_details = interpreter.get_input_details()
             output_details = interpreter.get_output_details()
@@ -158,28 +202,39 @@ class Resimler(models.Model):
 
             print(classes[max_index])
 
-            crack1 = "{:.2f}".format(sonuclar[0][0]*100)
-            dot1 = "{:.2f}".format(sonuclar[0][1]*100)
-            good1 = "{:.2f}".format(sonuclar[0][2]*100)
-            joint1 = "{:.2f}".format(sonuclar[0][3]*100)
+            # crack1 = "{:.2f}".format(sonuclar[0][0]*100)
+            # dot1 = "{:.2f}".format(sonuclar[0][1]*100)
+            # good1 = "{:.2f}".format(sonuclar[0][2]*100)
+            # joint1 = "{:.2f}".format(sonuclar[0][3]*100)
+            
+            az_hasarli1 = "{:.2f}".format(sonuclar[0][0]*100)
+            orta_hasarli1 = "{:.2f}".format(sonuclar[0][0]*100)
+            agir_hasarli1 = "{:.2f}".format(sonuclar[0][0]*100)
             
             # self.crack = str(sonuclar[0][0]*100)
             # self.dot = str(sonuclar[0][1]*100)
             # self.good = str(sonuclar[0][2]*100)
             # self.joint = str(sonuclar[0][3]*100)
 
-            self.crack = crack1
-            self.dot = dot1
-            self.good = good1
-            self.joint = joint1
-
+            # self.crack = crack1
+            # self.dot = dot1
+            # self.good = good1
+            # self.joint = joint1
+            
+            self.az_hasarli = az_hasarli1
+            self.orta_hasarli = orta_hasarli1
+            self.agir_hasarli = agir_hasarli1
 
         except:
 
-            self.crack = "--"
-            self.dot = "--"
-            self.good = "--"
-            self.joint = "--"
+            # self.crack = "--"
+            # self.dot = "--"
+            # self.good = "--"
+            # self.joint = "--"
+            
+            self.az_hasarli = "--"
+            self.orta_hasarli = "--"
+            self.agir_hasarli = "--"
 
         try:
             # Çatlak türü analizi:
