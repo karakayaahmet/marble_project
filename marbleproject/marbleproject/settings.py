@@ -31,8 +31,10 @@ SECURE_CROSS_ORIGIN_OPENER_POLICY = 'same-origin'
 
 # Application definition
 
+# "hesap",
+
 INSTALLED_APPS = [
-    "hesap",
+    
     "marble",
     "django.contrib.admin",
     "django.contrib.auth",
