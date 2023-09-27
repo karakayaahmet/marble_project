@@ -208,8 +208,8 @@ class Resimler(models.Model):
             # joint1 = "{:.2f}".format(sonuclar[0][3]*100)
             
             az_hasarli1 = "{:.2f}".format(sonuclar[0][0]*100)
-            orta_hasarli1 = "{:.2f}".format(sonuclar[0][0]*100)
-            agir_hasarli1 = "{:.2f}".format(sonuclar[0][0]*100)
+            orta_hasarli1 = "{:.2f}".format(sonuclar[0][1]*100)
+            agir_hasarli1 = "{:.2f}".format(sonuclar[0][2]*100)
             
             # self.crack = str(sonuclar[0][0]*100)
             # self.dot = str(sonuclar[0][1]*100)
