@@ -18,9 +18,9 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
  
-
+# path("hesap", include("hesap.urls")),
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("hesap", include("hesap.urls")),
+    
     path("", include("marble.urls"))
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
